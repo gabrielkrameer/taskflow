@@ -1,0 +1,23 @@
+:root { color-scheme: light; }
+
+.hero-decoration::after {
+  content: "";
+  position: absolute;
+  width: 35rem;
+  height: 35rem;
+  right: -15rem;
+  top: -13rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .13), transparent 65%);
+  pointer-events: none;
+}
+
+#conteudo, #tarefas, #projetos { scroll-margin-top: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
