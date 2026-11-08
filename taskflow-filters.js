@@ -1,6 +1,7 @@
 (() => {
   const list = document.getElementById('task-list');
   const select = document.getElementById('task-filter');
+  const results = document.getElementById('filter-results');
 
   function matchesFilter(row) {
     const mode = select.value;
@@ -15,9 +16,14 @@
   }
 
   function applyFilter() {
-    for (const row of list.querySelectorAll(':scope > li')) {
-      row.style.display = matchesFilter(row) ? '' : 'none';
+    const rows = [...list.querySelectorAll(':scope > li')];
+    let total = 0;
+    for (const row of rows) {
+      const visible = matchesFilter(row);
+      row.style.display = visible ? '' : 'none';
+      if (visible) total += 1;
     }
+    results.textContent = `${total} ${total === 1 ? 'tarefa exibida' : 'tarefas exibidas'}.`;
   }
 
   select.addEventListener('change', applyFilter);
