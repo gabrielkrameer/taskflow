@@ -61,7 +61,7 @@
 
   function saveTasks() {
     try {
-      localStorage.setItem(storageKey, JSON.stringify({ tasks: currentTasks() }));
+      localStorage.setItem(storageKey, JSON.stringify({ tasks: currentTasks(), openCount: Number(openCount.textContent) }));
     } catch {
       announce('As alterações continuam disponíveis nesta sessão.');
     }
@@ -73,6 +73,7 @@
       if (!Array.isArray(saved?.tasks)) return;
       const valid = saved.tasks.filter((task) => typeof task.title === 'string' && task.title.length > 0);
       list.replaceChildren(...valid.map((task) => makeTask(task.title, task.priority, task.detail, task.completed)));
+      if (Number.isFinite(saved.openCount)) openCount.textContent = String(saved.openCount);
     } catch {
       return;
     }
@@ -105,6 +106,7 @@
     if (!taskHeading) return;
     taskHeading.classList.toggle('line-through', event.target.checked);
     taskHeading.classList.toggle('text-muted', event.target.checked);
+    openCount.textContent = String(Math.max(0, Number(openCount.textContent) + (event.target.checked ? -1 : 1)));
     saveTasks();
     announce(`Tarefa ${taskHeading.textContent} ${event.target.checked ? 'concluída' : 'marcada como pendente'}.`);
   });
