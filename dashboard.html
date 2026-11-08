@@ -101,6 +101,18 @@
             <a href="#task-list" class="rounded-lg text-sm font-bold text-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">Ver todas</a>
           </div>
 
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <label for="task-filter" class="text-sm font-semibold text-ink">Filtrar tarefas</label>
+            <select id="task-filter" aria-controls="task-list" class="min-h-11 min-w-[190px] rounded-xl border border-line bg-white px-3 py-2 text-sm text-ink focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15">
+              <option value="todas">Todas</option>
+              <option value="pendentes">Pendentes</option>
+              <option value="concluidas">Concluídas</option>
+              <option value="alta">Prioridade alta</option>
+              <option value="media">Prioridade média</option>
+              <option value="baixa">Prioridade baixa</option>
+            </select>
+          </div>
+
           <ul id="task-list" class="flex flex-col gap-3" aria-label="Lista de tarefas prioritárias">
             <li class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line p-4 sm:flex-nowrap">
               <label class="flex min-w-0 flex-1 cursor-pointer items-center gap-3">
@@ -182,5 +194,6 @@
   </dialog>
 
   <script src="taskflow.js" defer></script>
+  <script src="taskflow-filters.js" defer></script>
 </body>
 </html>
